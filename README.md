@@ -14,6 +14,9 @@ tutorial step for which they are added.
 Changed files / diffs are shown and syntax highlighted, with a fancy theme,
 nice table of contents etc.
 
+[Sample Output](https://alexspeller.github.io/kondiment-sample/)
+[Sample Tutorial Repo](https://github.com/alexspeller/kondiment-sample)
+
 ## Install
 
 * Clone repo

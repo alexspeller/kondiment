@@ -1,0 +1,72 @@
+.tutorial-media {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+#steps .well {
+  width: 23%;
+  margin-top: 1em;
+  max-height: calc(100% - 2em);
+  overflow-y: auto;
+}
+
+#steps .well::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+#steps .well::-webkit-scrollbar:vertical {
+    width: 11px;
+}
+
+#steps .well::-webkit-scrollbar:horizontal {
+    height: 11px;
+}
+
+#steps .well::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid white; /* should match background, can't be transparent */
+    background-color: rgba(0, 0, 0, .5);
+}
+
+#steps .well::-webkit-scrollbar-track {
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+
+.step-header {
+  margin-top: 80px;
+  margin-bottom: 20px;
+}
+
+.step-header:first-of-type {
+  margin-top: 1em;
+}
+
+.code-tabs {
+  margin-top: 20px;
+}
+.code-tabs ul {
+  margin-bottom: 20px;
+}
+
+.code-pane {
+  position: relative;
+}
+
+.toggle-diff {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  list-style-type: none;
+}
+
+.toggle-diff li {
+  display: inline;
+}
+
+.toggle-diff li.active a {
+  background: #666;
+  color: white;
+}

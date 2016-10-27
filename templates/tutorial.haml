@@ -1,0 +1,89 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %title Tutorial
+    %link{rel: 'stylesheet', href: 'assets/github-markdown.css'}
+    %link{rel: 'stylesheet', href: 'assets/bootstrap/css/bootstrap.min.css'}
+    %link{rel: 'stylesheet', href: 'assets/kondiment.css'}
+    %link{rel: 'stylesheet', href: 'assets/highlight/styles/github.css'}
+    %script{type: 'text/javascript', src: 'assets/jquery.js'}
+    %script{type: 'text/javascript', src: 'assets/bootstrap/js/bootstrap.min.js'}
+    %script{type: 'text/javascript', src: 'assets/highlight/highlight.pack.js'}
+  %body
+    .container-fluid
+      .row
+        .col-md-3#steps
+          .well.hidden-sm.hidden-xs(data-spy="affix")
+            %h3 Contents
+            %ul.nav.nav-pills.nav-stacked
+              - steps.each do |step|
+                %li
+                  %a{href: "##{step.slug}"} #{step.number}. #{step.title}
+
+        .col-md-9
+          - steps.each do |step|
+            %h1.step-header{id: step.slug} #{step.number}. #{step.title}
+
+            .markdown-body!~step.html
+            .row
+              .col-md-6.col-md-offset-3
+                - step.images.each do |image|
+                  .panel.panel-default
+                    .panel-body
+                      %img.tutorial-media{src: image}
+                    .panel-footer.text-center=File.basename(image).split('.')[0..-2].join(' ')
+
+            - if step.changes.present?
+              .code-tabs
+                - active = true
+                %ul.nav.nav-tabs
+                  -step.changes.each do |change|
+                    %li{class: (active ? 'active' : nil)}
+                      %a{"data-toggle" => "tab", :href => "##{change.id}"}=change.path
+                    - active = false
+
+                - active = true
+                .tab-content
+                  -step.changes.each do |change|
+                    %div{id: change.id, class: (active ? 'tab-pane fade in active code-pane' : 'tab-pane fade code-pane') }
+                      %ul.toggle-diff
+                        %li.active
+                          %a.btn.btn-xs.btn-default{"data-toggle" => "tab", :href => "##{change.id}-code"} Code
+                        %li
+                          %a.btn.btn-xs.btn-default{"data-toggle" => "tab", :href => "##{change.id}-diff"} Diff
+
+                      .tab-content
+                        %div.tab-pane.active{ id: "#{change.id}-code" }
+                          %pre
+                            %code=change.contents
+                        %div.tab-pane{ id: "#{change.id}-diff" }
+                          %pre
+                            %code=change.diff
+
+                    - active = false
+
+
+    :javascript
+      hljs.initHighlightingOnLoad();
+      $('body').scrollspy({ target: '#steps' });
+      $("#steps ul li a[href^='#']").on('click', function(e) {
+
+         // prevent default anchor click behavior
+         e.preventDefault();
+
+         // store hash
+         var hash = this.hash;
+
+         // animate
+         $('html, body').animate({
+             scrollTop: $(hash).offset().top
+           }, 300, function(){
+
+             // when done, add hash to url
+             // (default click behaviour)
+             window.location.hash = hash;
+           });
+
+      });
+

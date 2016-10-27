@@ -31,7 +31,8 @@
                 - step.images.each do |image|
                   .panel.panel-default
                     .panel-body
-                      %img.tutorial-media{src: image}
+                      %a(href=image)
+                        %img.tutorial-media{src: image}
                     .panel-footer.text-center=File.basename(image).split('.')[0..-2].join(' ')
 
             - if step.changes.present?

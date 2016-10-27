@@ -81,6 +81,8 @@ class Kondiment
 
   def copy_media output_path
     FileUtils.cp_r @repo_path.join('tutorial-media'), output_path.join('media')
+  rescue
+    nil
   end
 
   class Step

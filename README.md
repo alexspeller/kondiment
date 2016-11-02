@@ -19,7 +19,7 @@ nice table of contents etc.
 [Sample Tutorial Repo](https://github.com/alexspeller/kondiment-sample)
 
 ## Install
-
+* Ensure ruby 2.1 or greater is available
 * Clone repo
 * cd in to repo directory
 * `bundle install`
